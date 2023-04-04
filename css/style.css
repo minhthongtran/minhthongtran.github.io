@@ -1,12 +1,14 @@
 .avatar {
   position: absolute;
   left: 1em;
-  top: 5.5em;
+  top: 4.5em;
 }
 
 .avatar img {
   border-radius: 50%;
-  opacity: 70%;
+  opacity: 90%;
+  width: 100px;
+  height: 100px;
 }
 
 body {
@@ -25,7 +27,7 @@ footer p {
 .container {
   position: absolute;
   top: 4.5em;
-  left: 8em;
+  left: 12em;
   font-size: 35px;
   height: 100vh;
   font-family: Raleway;
@@ -39,6 +41,7 @@ footer p {
 	border-right: 4px solid #212121;
 	animation: cursor 1s step-start infinite, 
     text 3s steps(18) alternate infinite;
+    opacity: 70%;
 }
 
 @keyframes cursor {
@@ -54,4 +57,26 @@ footer p {
 	100% { 
     width: 29.5ch; 
   }
+}
+
+.navbar{
+  background-color: rgb(164, 163, 163);
+  border-radius: 10px;
+  height: 50px;
+}
+
+.navbar li{
+  float:left;
+  list-style: none; 
+  margin: 13px 20px;
+}
+
+.navbar ul{
+  overflow: auto;
+}
+
+.navbar li a{
+  padding: 3px 3px;
+  text-decoration: none;
+  color: white;
 }
