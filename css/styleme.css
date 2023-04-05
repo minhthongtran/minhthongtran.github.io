@@ -10,12 +10,25 @@ p {
   color: #A4C1F6;
 }
 
-span, li {
+span, li, .drop-caps {
   color : white;
 }
 
-li > a {
+li > div a {
   color: #BC6352;
+  text-decoration: none;
+}
+
+li > div > a:hover {
+  text-decoration: underline;
+}
+
+li span {
+  color: #F2F28F;
+}
+
+li div > div {
+  padding-left: 40px;
 }
 
 p.title {
@@ -45,7 +58,6 @@ span.yellow {
   color: #F2F28F;
   /*Change the font properties*/
   font-family: Verdana;
-  font-size: 20px;
   font-weight: bold;
   font-style: italic;
 }
@@ -64,3 +76,8 @@ footer {
   float: right;
 }
 
+.drop-caps::first-letter {
+  font-size: 150%;
+  text-shadow: 1px 1px 3px red;
+  float: left;
+}
