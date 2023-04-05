@@ -1,0 +1,66 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #5C5447;
+}
+
+p {
+  color: #A4C1F6;
+}
+
+span, li {
+  color : white;
+}
+
+li > a {
+  color: #BC6352;
+}
+
+p.title {
+  font-size: 20px;
+}
+
+div.moods {
+  display: flex;
+}
+
+/*Change atleast one other thing - background color*/
+div.moods span {
+  background-color: gray;
+  text-align: center;
+}
+
+div.moods img {
+  width: 250px;
+  height: 250px;
+}
+
+#nameTitle {
+  font-size: 50px;
+}
+
+span.yellow {
+  color: #F2F28F;
+  /*Change the font properties*/
+  font-family: Verdana;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+#movies {
+  list-style: decimal;
+}
+
+/*Change the color of at least two elements */
+ul#movies li {
+  color: #C29E76;
+}
+
+footer {
+  display: flex;
+  float: right;
+}
+
