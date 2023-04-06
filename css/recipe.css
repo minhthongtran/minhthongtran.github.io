@@ -1,0 +1,109 @@
+/*Extra feature: Background:Set the overall page to use a background image*/
+body {
+ background-image: url(../images/recipe/silverware.jpg);
+ background-repeat: repeat;
+}
+
+/*Extra feature: Pie bullet:Set all bulleted lists of  items on the page to use an image for their bullet icon rather than the normal black circle. */
+div.ingredients ul {
+  list-style-image: url(../images/recipe/pie_bullet.png);
+}
+
+div.content span {
+  color: #404040;
+  font-family: Georgia;
+  font-size: 11pt;
+}
+
+.heading {
+  color: #A4A400;
+  background-color: #F0F0F0; 
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 22pt;
+}
+
+.center {
+  text-align: center;
+}
+
+.normal {
+  font-size: 18pt;
+  font-weight: normal;
+  text-decoration: underline;
+}
+
+div.heading, div.content > div, div.comments > div > div {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+div.direction ul {
+  list-style-type: decimal;
+}
+
+/*Extra feature: Pie bullet:Set all bulleted lists of  items on the page to use an image for their bullet icon rather than the normal black circle. */
+div.direction ul li > ul {
+  /*list-style-type: circle;*/
+  list-style-image: url(../images/recipe/pie_bullet.png);
+}
+
+div.comments {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+div.comments div {
+  background-color: #FFFFA8;
+}
+
+div.comments span {
+  font-style: italic;
+}
+
+div.link a {
+  color: #A4A400;
+  font-family: Georgia;
+  font-size: 11pt;
+}
+
+span.cake {
+  text-decoration: line-through;
+}
+
+div.pre-formatted {
+  text-align: right;
+  width: 21%;
+}
+
+div.pre-formatted span {
+  font-family: monospace;
+}
+
+footer {
+  display: flex;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  text-decoration: underline;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
