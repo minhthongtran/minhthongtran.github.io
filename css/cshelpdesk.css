@@ -275,8 +275,12 @@ div.logo {
 }
 
 div.validator-checker {
+  position: absolute;
+  bottom: 0;
+  left: 0;
   float: right; 
   display: flex;
+  height: 50px;
 }
 
 
