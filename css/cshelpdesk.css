@@ -274,4 +274,9 @@ div.logo {
   height: 36px;
 }
 
+div.validator-checker {
+  float: right; 
+  display: flex;
+}
+
 
