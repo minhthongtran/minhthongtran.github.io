@@ -21,3 +21,13 @@ a.navbar-brand {
 .right button {
   margin-left: 30px;
 }
+
+.d-flex {
+  margin-left: auto;
+}
+
+.d-flex label {
+  padding-top: 0.5em;
+  color: white;
+  padding-right: 1em;
+}
