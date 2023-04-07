@@ -1,0 +1,15 @@
+.col-md-6 {
+  display: inline-block;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+
+#navbarColor01 a.nav-link {
+  border-left: 1.5px solid;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
+a.navbar-brand {
+  padding-right: 2em;
+}
