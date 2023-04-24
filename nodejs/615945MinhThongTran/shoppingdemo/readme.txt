@@ -1,1 +1,0 @@
-before run the server,pls run  "npm update" on terminal
