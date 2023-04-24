@@ -29,6 +29,20 @@ class Product {
     const p = db.find((p) => p.name == productName);
     return p.stock;
   }
+
+  static deductStock(cartList) {
+    let result = '';
+    for (let c of cartList) {
+      let idx = db.findIndex((p) => p.name == c.productName);
+      let pro = db[idx];
+      if (pro.stock - c.productQuantity >= 0) {
+        pro.stock = pro.stock - c.productQuantity;
+      } else {
+        result += c.productName + ', ';
+      }
+    }
+    return result;
+  }
 }
 
 let db = [];

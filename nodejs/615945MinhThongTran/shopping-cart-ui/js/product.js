@@ -5,19 +5,29 @@ window.addEventListener('load', function (evt) {
 
   //Get list of shopping cart base on username of current user
   displayShoppingCartList();
+
+  this.document.getElementById('logoutBtn').addEventListener('click', logout);
+  this.document.getElementById('btnPlaceOrder').addEventListener('click', placeOrder);
 });
+
+function logout() {
+  sessionStorage.setItem('accessToken', '');
+  var pathname = window.location.pathname;
+  var dir = pathname.substring(0, pathname.lastIndexOf('/'));
+  window.location.href = dir + '/login.html';
+}
 
 function getCurrentUser() {
   const accessToken = sessionStorage.getItem('accessToken');
-  const currentUser = JSON.parse(accessToken);
-  if (currentUser === undefined || currentUser === null) {
+  if (accessToken === undefined || accessToken === null || accessToken === '') {
     var pathname = window.location.pathname;
     var dir = pathname.substring(0, pathname.lastIndexOf('/'));
     window.location.href = dir + '/login.html';
   } else {
+    const currentUser = JSON.parse(accessToken);
     document.getElementById('userLogin').innerHTML = 'Welcome, ' + currentUser.username;
+    return currentUser;
   }
-  return currentUser;
 }
 async function displayShoppingCartList() {
   const jsonData = await getShoppingCartList();
@@ -29,7 +39,7 @@ async function displayShoppingCartList() {
       e.id,
       e.productName,
       e.productPrice,
-      total,
+      formatNumber(total),
       e.productQuantity,
       false
     );
@@ -45,21 +55,18 @@ async function displayShoppingCartList() {
     document.getElementById('placeOrder').removeAttribute('hidden');
   }
   if (jsonData.length > 0) {
-    addNewShoppingCartRowToTable(0, 'Total: ' + totalCart, '', '', '', true);
+    addNewShoppingCartRowToTable(0, 'Total: ' + formatNumber(totalCart), '', '', '', true);
   }
 }
 
 async function getShoppingCartList() {
   const uri = 'http://localhost:5000/shoppingcarts/users/' + getCurrentUser().username + '/carts';
-  const response = await fetch(uri, { method: 'GET', headers: getHeader() });
+  const response = await fetchAPI(uri, 'GET');
   return await response.json();
 }
 
 async function displayProductList() {
-  const response = await fetch('http://localhost:5000/products', {
-    method: 'GET',
-    headers: getHeader(),
-  });
+  const response = await fetchAPI('http://localhost:5000/products', 'GET');
   const jsonData = await response.json();
   productList = jsonData;
   for (let e of jsonData) {
@@ -69,24 +76,28 @@ async function displayProductList() {
 
 async function addProductShoppingCart(productName, productPrice) {
   let maxOfStock = findMaxStockValue(productName);
+
   const shoppingCartList = await getShoppingCartList();
 
   const currentQuantity = shoppingCartList.find((s) => s.productName == productName);
-  //console.log(currentQuantity.productQuantity);
-  if (currentQuantity !== undefined && parseInt(currentQuantity.productQuantity) + 1 > maxOfStock) {
+  console.log(currentQuantity);
+  if (
+    (currentQuantity !== undefined && parseInt(currentQuantity.productQuantity) + 1 > maxOfStock) ||
+    maxOfStock == 0
+  ) {
     alert('Max value of Stock is: ' + maxOfStock);
     return;
   }
-  const response = await fetch('http://localhost:5000/shoppingcarts', {
-    method: 'POST',
-    body: JSON.stringify({
+  const response = await fetchAPI(
+    'http://localhost:5000/shoppingcarts',
+    'POST',
+    JSON.stringify({
       username: getCurrentUser().username,
       productName: productName,
       productPrice: productPrice,
       productQuantity: 1,
-    }),
-    headers: getHeader(),
-  });
+    })
+  );
   let jsonData = await response.json();
   if (jsonData) {
     //re-display shopping cart table
@@ -95,31 +106,46 @@ async function addProductShoppingCart(productName, productPrice) {
 }
 
 async function deleteProductShoppingCart(id) {
-  const response = await fetch('http://localhost:5000/shoppingcarts/' + id, {
-    method: 'DELETE',
-    headers: getHeader(),
-  });
+  const response = await fetchAPI('http://localhost:5000/shoppingcarts/' + id, 'DELETE');
   let jsonData = await response.json();
   if (jsonData) {
     console.log('Delete shopping cart ' + jsonData);
+    window.location.reload();
   }
 }
 
 async function editProductShoppingCart(id, productName, productPrice, total, productQuantity) {
-  const response = await fetch('http://localhost:5000/shoppingcarts/' + id, {
-    method: 'PUT',
-    body: JSON.stringify({
+  const response = await fetchAPI(
+    'http://localhost:5000/shoppingcarts/' + id,
+    'PUT',
+    JSON.stringify({
       username: getCurrentUser().username,
       productName: productName,
       productPrice: productPrice,
       total: total,
       productQuantity: productQuantity,
-    }),
-    headers: getHeader(),
-  });
+    })
+  );
   let jsonData = await response.json();
   if (jsonData) {
     console.log('Updated shopping cart ' + jsonData.id);
+  }
+}
+
+async function placeOrder() {
+  const response = await fetchAPI(
+    'http://localhost:5000/shoppingcarts/users/' + getCurrentUser().username + '/place-order',
+    'POST'
+  );
+  if (response.ok) {
+    let res = await response.json();
+    if (res && res !== '' && res != -1) {
+      alert(res);
+    }
+    console.log('Place Order successful!' + res);
+    window.location.reload();
+  } else {
+    console.log('HTTP Error!');
   }
 }
 
@@ -279,4 +305,8 @@ function getHeader() {
     'Content-type': 'application/json; charset=UTF-8',
     'Access-Token': JSON.stringify(curUser),
   };
+}
+
+function formatNumber(number) {
+  return number.toLocaleString('en-US', { minimumFractionDigits: 2 });
 }

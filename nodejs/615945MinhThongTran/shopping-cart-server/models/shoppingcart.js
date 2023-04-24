@@ -1,3 +1,5 @@
+const { use } = require('../routers/loginRouter');
+
 let counter = 0;
 class ShoppingCart {
   id;
@@ -38,6 +40,15 @@ class ShoppingCart {
     const deletedProd = db[index];
     db.splice(index, 1);
     return deletedProd;
+  }
+
+  static placeOrder(username) {
+    let index = db.findIndex((s) => s.username == username);
+    while (index >= 0) {
+      db.splice(index, 1);
+      index = db.findIndex((s) => s.username == username);
+    }
+    return index;
   }
 
   edit() {

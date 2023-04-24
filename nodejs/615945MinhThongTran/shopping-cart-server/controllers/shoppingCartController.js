@@ -99,8 +99,30 @@ exports.deleteById = (req, res, next) => {
   }
 };
 
+exports.placeOrder = (req, res, next) => {
+  if (validateAccessTokenHeader(req)) {
+    next(new Error('Invalid Access Token'));
+  } else {
+    //1. Deduct product stock
+    const shoppingCartList = ShoppingCart.getShoppingCartByUsername(req.params.username);
+    const deductRes = Product.deductStock(shoppingCartList);
+    //2. Empty shopping cart
+    const delIdx = ShoppingCart.placeOrder(req.params.username);
+    if (deductRes === '' && delIdx < 0) {
+      res.status(200).json(delIdx);
+    } else {
+      if (deductRes !== '') {
+        res
+          .status(200)
+          .json('Products are out of stock: ' + deductRes.substring(0, deductRes.length - 2));
+      } else {
+        next(new Error('Something wrong!'));
+      }
+    }
+  }
+};
+
 function validateAccessTokenHeader(req) {
   const accessToken = req.headers['access-token'];
-  console.log(req.headers);
   return !accessToken || accessToken === '';
 }

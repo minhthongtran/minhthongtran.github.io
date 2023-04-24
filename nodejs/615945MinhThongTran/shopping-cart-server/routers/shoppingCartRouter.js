@@ -7,5 +7,6 @@ router.post('/', shoppingCartController.save);
 router.get('/users/:username/carts', shoppingCartController.getShoppingCartByUsername);
 router.put('/:shoppingCartId', shoppingCartController.edit);
 router.delete('/:shoppingCartId', shoppingCartController.deleteById);
+router.post('/users/:username/place-order', shoppingCartController.placeOrder);
 
 module.exports = router;
