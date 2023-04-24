@@ -1,0 +1,44 @@
+.logo img {
+  opacity: 90%;
+  width: 45px;
+  height: 45px;
+}
+
+#navbarColor01 {
+  padding-left: 75%;
+}
+
+#navbarColor01 > div {
+  width: 50%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+#tableFooter {
+  text-align: right;
+}
+
+#placeOrder {
+  float: right;
+}
+
+.quantity-group {
+  width: 30%;
+}
+
+div.input-group {
+  width: 50%;
+}
+
+input.input-number {
+  max-width: 20%;
+  text-align: center;
+}
+
+img.product-image {
+  width: 30px;
+  height: 30px;
+}

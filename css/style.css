@@ -35,7 +35,7 @@ footer p {
 }
 
 .typewriter {
-	width: 21.5ch;
+	width: 17.5ch;
 	white-space: nowrap;
 	overflow: hidden;
 	border-right: 4px solid #212121;
@@ -55,7 +55,7 @@ footer p {
     width: 0; 
   }
 	100% { 
-    width: 29.5ch; 
+    width: 17.5ch; 
   }
 }
 

@@ -1,0 +1,18 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "nodemon": "./node_modules/.bin/nodemon",
+    "start": "nodemon lab12Question1.js"
+  },
+  "keywords": [
+    "final-project"
+  ],
+  "author": "minhthong.tran",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

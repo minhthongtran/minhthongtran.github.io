@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Form Login</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cerulean/bootstrap.min.css" integrity="sha384-3fdgwJw17Bi87e1QQ4fsLn4rUFqWw//KU0g8TvV6quvahISRewev6/EocKNuJmEw" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/login.css">
+  <script src="./js/login.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <div class="logo"><img src="./images/logo.png" alt="logo"></div>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <form class="login-form" id="loginForm">
+            <div>
+              <div>
+                <span>Username:</span>
+                <input class="form-control me-sm-2" type="text" placeholder="Username" id="username">
+              </div>
+              <div>
+                <span for="homePage">Password:</span>
+                <input class="form-control me-sm-2" type="password" placeholder="Password" id="password">
+              </div>
+            </div>
+            <div class="login-button">
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit" id="loginBtn">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <p id="errorMsg"></p>
+    <div class="container">
+      <div class="typewriter">Welcome to my store</div>
+    </div>
+  </main>
+  <footer>
+    <div>
+        <span style="margin-left: 1em;">MinhThongTran-615945 ::: CS472-WAP</span>
+        <span style="float: right;margin-right: 1em;"> &copy; April 2023</span>
+    </div>
+</footer>
+</body>
+</html>
