@@ -123,6 +123,21 @@ async function editProductShoppingCart(id, productName, productPrice, total, pro
   }
 }
 
+async function fetchAPI(url, method, body) {
+  const response = await fetch(url, {
+    method: method,
+    body: body,
+    headers: getHeader(),
+  });
+  if (response.ok) {
+    return response;
+  } else {
+    var pathname = window.location.pathname;
+    var dir = pathname.substring(0, pathname.lastIndexOf('/'));
+    window.location.href = dir + '/login.html';
+  }
+}
+
 function addNewShoppingCartRowToTable(idx, name, price, total, quantity, isFooter) {
   const row = document.createElement('tr');
   row.setAttribute('id', 'item-' + idx);

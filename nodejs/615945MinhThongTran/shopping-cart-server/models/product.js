@@ -26,7 +26,8 @@ class Product {
   }
 
   static getMaxStockProductByName(productName) {
-    return db.find((p) => p.productName == productName).stock;
+    const p = db.find((p) => p.name == productName);
+    return p.stock;
   }
 }
 
